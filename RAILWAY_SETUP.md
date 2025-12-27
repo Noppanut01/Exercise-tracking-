@@ -12,12 +12,15 @@ Quick reference for deploying to Railway on the `dev` branch.
 
 2. **Create Railway Project:**
    - Go to https://railway.app/new
-   - Click "Deploy from GitHub repo"
-   - Select this repository
-   - Branch: **dev** (Railway will auto-detect from configs)
+   - Click "Empty Project" (not "Deploy from GitHub")
+   - Give it a name (e.g., "Workout Tracker")
 
-3. **Deploy Backend:**
-   - Railway will auto-detect `backend/` service
+3. **Deploy Backend Service:**
+   - Click "+ New" → "GitHub Repo"
+   - Select this repository
+   - **IMPORTANT:** Set Root Directory to `/backend`
+   - **IMPORTANT:** Set Branch to `dev`
+   - Railway will use `backend/nixpacks.toml` for build
    - Add environment variables:
      ```
      ANTHROPIC_API_KEY=your_key_here
@@ -27,8 +30,12 @@ Quick reference for deploying to Railway on the `dev` branch.
    - Add Volume: Mount `/app/data` (1GB)
    - Generate Domain
 
-4. **Deploy Frontend:**
-   - Railway will auto-detect `frontend/` service
+4. **Deploy Frontend Service:**
+   - In same project, click "+ New" → "GitHub Repo"
+   - Select same repository
+   - **IMPORTANT:** Set Root Directory to `/frontend`
+   - **IMPORTANT:** Set Branch to `dev`
+   - Railway will use `frontend/nixpacks.toml` for build
    - Add environment variable:
      ```
      NEXT_PUBLIC_API_URL=https://your-backend.up.railway.app
@@ -38,12 +45,13 @@ Quick reference for deploying to Railway on the `dev` branch.
 ## 📁 Files Created
 
 ```
-✅ railway.json                 - Root config
-✅ .railway                     - Service detection (branch: dev)
-✅ backend/railway.json         - Backend config
-✅ backend/Procfile             - Start command
+✅ railway.toml                 - Root monorepo config
+✅ backend/railway.toml         - Backend Railway config
+✅ backend/nixpacks.toml        - Backend build config
+✅ backend/Procfile             - Start command (backup)
 ✅ backend/runtime.txt          - Python version
-✅ frontend/railway.json        - Frontend config
+✅ frontend/railway.toml        - Frontend Railway config
+✅ frontend/nixpacks.toml       - Frontend build config
 ✅ DEPLOYMENT.md                - Full deployment guide
 ✅ backend/main.py              - Updated CORS for Railway
 ```
