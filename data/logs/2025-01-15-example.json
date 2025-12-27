@@ -1,0 +1,37 @@
+{
+  "date": "2025-01-15",
+  "workout_type": "strength",
+  "exercises": [
+    {
+      "name": "Squats",
+      "sets": 3,
+      "reps": 12,
+      "load": "bodyweight",
+      "notes": "Felt okay, calves were tight"
+    },
+    {
+      "name": "Push-ups",
+      "sets": 3,
+      "reps": 10,
+      "load": "bodyweight"
+    }
+  ],
+  "running_data": {
+    "duration_minutes": 8,
+    "distance_km": null,
+    "pace_min_per_km": null,
+    "route": "Around the block"
+  },
+  "perceived_effort": "moderate",
+  "fatigue_level": 6,
+  "pain_or_tightness": {
+    "body_areas": ["calves"],
+    "description": "Calves were tight, especially after sitting all day. No sharp pain.",
+    "severity": "mild"
+  },
+  "free_text_reflection": "Today I did Day 1 workout. Squats felt okay but calves were tight. Ran about 8 minutes total, felt heavy after sitting all day. Energy level was low but no sharp pain.",
+  "metadata": {
+    "created_at": "2025-01-15T18:30:00Z",
+    "updated_at": "2025-01-15T18:30:00Z"
+  }
+}

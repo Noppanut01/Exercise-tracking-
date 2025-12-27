@@ -1,0 +1,200 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Daily Workout Log Schema",
+  "description": "Schema for daily workout tracking with AI-friendly structure",
+  "type": "object",
+  "required": ["date", "workout_type"],
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date (YYYY-MM-DD)",
+      "example": "2025-01-15"
+    },
+    "workout_type": {
+      "type": "string",
+      "enum": ["strength", "run", "recovery"],
+      "description": "Type of workout performed"
+    },
+    "exercises": {
+      "type": "array",
+      "description": "List of exercises performed (for strength workouts)",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Exercise name",
+            "example": "Squats"
+          },
+          "sets": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of sets"
+          },
+          "reps": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Repetitions per set"
+          },
+          "load": {
+            "type": "string",
+            "description": "Weight/resistance used",
+            "example": "bodyweight, 10kg dumbbells, resistance band"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Exercise-specific notes"
+          }
+        }
+      }
+    },
+    "running_data": {
+      "type": "object",
+      "description": "Running-specific data (for run workouts)",
+      "properties": {
+        "duration_minutes": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Total running time in minutes"
+        },
+        "distance_km": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Distance covered in kilometers"
+        },
+        "pace_min_per_km": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Average pace (minutes per kilometer)"
+        },
+        "route": {
+          "type": "string",
+          "description": "Running route description"
+        }
+      }
+    },
+    "perceived_effort": {
+      "type": "string",
+      "enum": ["easy", "moderate", "hard"],
+      "description": "Subjective effort level"
+    },
+    "fatigue_level": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Overall fatigue (1=fresh, 10=exhausted)"
+    },
+    "pain_or_tightness": {
+      "type": "object",
+      "description": "Physical discomfort or restrictions",
+      "properties": {
+        "body_areas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Affected body parts",
+          "example": ["calves", "lower back", "right shoulder"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Free-text description of pain/tightness"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["mild", "moderate", "severe"],
+          "description": "Severity of discomfort"
+        }
+      }
+    },
+    "free_text_reflection": {
+      "type": "string",
+      "description": "User's raw thoughts and observations about the workout"
+    },
+    "ai_analysis": {
+      "type": "object",
+      "description": "AI-generated analysis and context (added after analysis)",
+      "properties": {
+        "human_insight": {
+          "type": "string",
+          "description": "Short, encouraging, practical feedback in natural language"
+        },
+        "machine_context": {
+          "type": "object",
+          "description": "Structured context for AI reasoning",
+          "properties": {
+            "training_phase": {
+              "type": "string",
+              "description": "Current training phase",
+              "example": "early_adaptation, maintenance, progressive_overload"
+            },
+            "overall_fatigue": {
+              "type": "string",
+              "enum": ["low", "moderate", "high", "very_high"],
+              "description": "Cumulative fatigue assessment"
+            },
+            "injury_risk": {
+              "type": "string",
+              "enum": ["low", "low_to_moderate", "moderate", "moderate_to_high", "high"],
+              "description": "Injury risk assessment"
+            },
+            "problem_areas": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Body areas requiring attention"
+            },
+            "movement_quality": {
+              "type": "string",
+              "enum": ["excellent", "good", "acceptable", "poor"],
+              "description": "Overall movement quality assessment"
+            },
+            "recommended_focus": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Training focus recommendations",
+              "example": ["mobility", "easy_aerobic_base", "active_recovery"]
+            },
+            "load_adjustment": {
+              "type": "string",
+              "enum": ["increase", "maintain", "maintain_or_slightly_reduce", "reduce", "rest"],
+              "description": "Volume/intensity adjustment recommendation"
+            },
+            "confidence_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "AI confidence in analysis (0-1)"
+            }
+          }
+        },
+        "analyzed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of AI analysis"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Log metadata",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Log creation timestamp"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp"
+        }
+      }
+    }
+  }
+}
