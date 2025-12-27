@@ -1,0 +1,14 @@
+# Railway Project Configuration
+# This file helps Railway identify your services
+
+# Default branch for deployments
+branch = "dev"
+
+# Services configuration
+[services.backend]
+root = "backend"
+name = "workout-tracker-backend"
+
+[services.frontend]
+root = "frontend"
+name = "workout-tracker-frontend"
