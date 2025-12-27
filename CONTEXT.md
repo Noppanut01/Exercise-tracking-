@@ -31,6 +31,30 @@ This is NOT production software and will be extended later.
 - Simple frontend (plain HTML/CSS/JS or minimal React)
 - Human-readable JSON that can be edited by hand
 
+[TECH STACK DECISIONS]
+Frontend: Next.js 15 (TypeScript, App Router)
+- Modern React framework with excellent DX
+- TypeScript for type safety
+- Easy to extend with AI features in the future
+
+Backend: FastAPI (Python 3.11+)
+- Modern async Python framework
+- Auto-generated API docs (Swagger UI)
+- Type hints with Pydantic models
+- Excellent for AI API integration
+
+AI Provider: Claude (Anthropic API)
+- Model: Claude Sonnet 4 (primary) / Opus 4 (deep analysis)
+- Best for nuanced reasoning and pattern detection
+- Excellent at dual outputs (human insights + machine context)
+- Conservative, safety-focused recommendations
+- Strong long-context analysis capabilities
+
+Data Storage: JSON files (one file per day)
+- Structure: data/logs/YYYY-MM-DD.json
+- Benefits: easy manual editing, git-friendly, scalable
+- Each file contains one daily workout log
+
 [DATA DESIGN REQUIREMENTS]
 Design a clear, normalized JSON structure.
 Each daily log must include:
